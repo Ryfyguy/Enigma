@@ -18,25 +18,13 @@ public class Movement : MonoBehaviour
     // Update is called once per frame
     void OnCollisionEnter2D(Collision2D coll)
     {
-        if (coll.gameObject.name == "object" || coll.gameObject.name == "Wall")
+        if (coll.gameObject.name == "Rock" || coll.gameObject.name == "Wall")
         {
             move = true;
         }
     }
     void Update()
     {
-        /*
-        float MoveX = Input.GetAxis("Horizontal");
-        float MoveY = Input.GetAxis("Vertical");
-
-        Vector2 move = new Vector2(MoveX, MoveY);
-        rb2d.AddForce(move * moveSpeed);
-        */
-
-        // If a movement key is pressed,
-        //      do the thing unless...
-        //          - a thing is in the way or
-        //          - 
         if (move)
         {
             if (Input.GetKey("a"))
