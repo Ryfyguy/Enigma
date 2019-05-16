@@ -6,6 +6,18 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/SampleScene.unity
+    path: Assets/Scenes/LevelSelect.unity
+    guid: 4db873654252d4745be36d1353e595f7
+  - enabled: 1
+    path: Assets/Scenes/Maze.unity
+    guid: 7f394f8fc8f94a346b87703dd6b580a3
+  - enabled: 1
+    path: Assets/Scenes/IcePuzzle.unity
+    guid: 8e77751911e364c42910615eb5ad63d2
+  - enabled: 1
+    path: Assets/Scenes/Main.unity
+    guid: adde7267719ec7b4ea7b8bbcf446a072
+  - enabled: 1
+    path: Assets/Scenes/Cryptogram.unity
     guid: 2cda990e2423bbf4892e6590ba056729
   m_configObjects: {}

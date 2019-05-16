@@ -3,15 +3,7 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags:
-  - Blue Dot
-  - Red Dot
-  - Green Dot
-  - Orange Dot
-  - Pink Dot
-  - Purple Dot
-  - Teal Dot
-  - Yellow Dot
+  tags: []
   layers:
   - Default
   - TransparentFX

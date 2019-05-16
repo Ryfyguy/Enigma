@@ -4,14 +4,10 @@ using UnityEngine;
 
 public class Pieces : MonoBehaviour
 {
-    [Header("Board Variables")]
     public int column; // we need to the the position of the new gameobject board everytime we swap blocks.
     public int row;
-    public int previousColumn;
-    public int previousRow; // the row that was swapped
     public int targetX;
-    public bool isMatched = false; // initially they arent matched so that everything doesnt end up matching, so setting it false and changing it to true will help to only make certain colors match. 
-
+    public bool isMatched = false;
     public int targetY;
     private Board board;
     private GameObject otherDot;
@@ -19,7 +15,6 @@ public class Pieces : MonoBehaviour
     private Vector2 finalTouchPosition;
     private Vector2 tempPosition;
     public float swipeAngle = 0;
-    public float swipeResist = 1f;
     // Start is called before the first frame update
     void Start()
     {
@@ -28,9 +23,6 @@ public class Pieces : MonoBehaviour
         targetY = (int)transform.position.y;
         row = targetY;
         column = targetX;
-        previousRow = row;
-        previousColumn = column;
-
     }
 
     // Update is called once per frame
@@ -73,24 +65,6 @@ public class Pieces : MonoBehaviour
         }
     }
 
-    //co-routine to check for certain conditions.
-    public IEnumerator CheckMoveCo()
-    {
-        yield return new WaitForSeconds(.2f);// waits for 0.5 seconds
-        if(otherDot != null)
-        {
-            if(!isMatched && !otherDot.GetComponent<Pieces>().isMatched)
-            {
-                otherDot.GetComponent<Pieces>().row = row;
-                otherDot.GetComponent<Pieces>().column = column;
-                row = previousRow;
-                column = previousColumn;
-
-            }
-            otherDot = null;
-        }
-    }
-
     private void OnMouseDown()
     {//gets the position of the mouse click when uer first clicks it. 
         firstTouchPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition); //gets position of the first click
@@ -104,24 +78,20 @@ public class Pieces : MonoBehaviour
     }
     void CalculateAngle()
     {
-        if (Mathf.Abs(finalTouchPosition.y - firstTouchPosition.y) > swipeResist || Mathf.Abs(finalTouchPosition.x - firstTouchPosition.x) > swipeResist)
-        {
-            swipeAngle = Mathf.Atan2(finalTouchPosition.y - firstTouchPosition.y, finalTouchPosition.x - firstTouchPosition.x) * 180 / Mathf.PI; //changes the radian found to angles, and we are basically doing pythagorean theorm here. 
-                                                                                                                                                 //Debug.Log(swipeAngle);
-            MovePieces();
-        }
-
+        swipeAngle = Mathf.Atan2(finalTouchPosition.y - firstTouchPosition.y, finalTouchPosition.x - firstTouchPosition.x) * 180/Mathf.PI; //changes the radian found to angles, and we are basically doing pythagorean theorm here. 
+        //Debug.Log(swipeAngle);
+        MovePieces();
     }
     void MovePieces()// moves based on player clicks, will account for the angle that the user swipes and not just straight 90 degree or 270 degrees. 
     {
-        if(swipeAngle> -45 && swipeAngle <= 45 && column < board.width-1)
+        if(swipeAngle> -45 && swipeAngle <= 45 && column < board.width)
         {
             //Right swiping
             otherDot = board.allDots[column + 1, row];//changes clumn position gets the dot to the right
             otherDot.GetComponent<Pieces>().column -= 1;//changes the position of that selected dot
             column += 1;// changes our chosen dot to that new column position
         }
-        else if (swipeAngle > 45 && swipeAngle <= 135 && row<board.height-1) //depending on what angle the user swipes. 
+        else if (swipeAngle > 45 && swipeAngle <= 135 && row<board.height) //depending on what angle the user swipes. 
         {
             //Up swiping
             otherDot = board.allDots[column, row+1];
@@ -142,7 +112,6 @@ public class Pieces : MonoBehaviour
             otherDot.GetComponent<Pieces>().row += 1;
             row -= 1; 
         }
-        StartCoroutine(CheckMoveCo());
     }
 
     void FindMatches() // initially the isMatched is false, as in no match. 
@@ -151,32 +120,26 @@ public class Pieces : MonoBehaviour
         {
             GameObject leftDot1 = board.allDots[column - 1, row]; // swaps the dot with the dot to its left or right .  changing the column changes the dot position
             GameObject rightDot1 = board.allDots[column + 1, row];
-            if (leftDot1 != null && rightDot1 != null)
+            if (leftDot1.tag == this.gameObject.tag && rightDot1.tag == this.gameObject.tag) 
             {
-                if (leftDot1.tag == this.gameObject.tag && rightDot1.tag == this.gameObject.tag)
-                {
-                    leftDot1.GetComponent<Pieces>().isMatched = true;
-                    rightDot1.GetComponent<Pieces>().isMatched = true;
-                    isMatched = true;
+                leftDot1.GetComponent<Pieces>().isMatched = true;
+                rightDot1.GetComponent<Pieces>().isMatched = true;
+                isMatched = true;
 
 
-                }
             }
         }
         if (row > 0 && row < board.height - 1) //
         {
             GameObject upDot1 = board.allDots[column, row+1]; //same thing as the previous if statement but goes vertical.
             GameObject downDot1 = board.allDots[column, row-1];
-            if (upDot1 != null && downDot1 != null)
+            if (upDot1.tag == this.gameObject.tag && downDot1.tag == this.gameObject.tag)
             {
-                if (upDot1.tag == this.gameObject.tag && downDot1.tag == this.gameObject.tag)
-                {
-                    upDot1.GetComponent<Pieces>().isMatched = true;
-                    downDot1.GetComponent<Pieces>().isMatched = true;
-                    isMatched = true;
+                upDot1.GetComponent<Pieces>().isMatched = true;
+                downDot1.GetComponent<Pieces>().isMatched = true;
+                isMatched = true;
 
 
-                }
             }
         }
     }

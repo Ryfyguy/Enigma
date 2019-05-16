@@ -10,7 +10,7 @@ public class SceneTP : MonoBehaviour
     // Start is called before the first frame update
     void OnTriggerEnter2D(Collider2D other)
     {
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene(index);
         //Loading Level with build index
 
         //loading level with scene name
