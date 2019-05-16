@@ -4,14 +4,14 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Yellow Dot
-  - Purple Dot
-  - Pink Dot
   - Blue Dot
-  - Teal Dot
   - Red Dot
   - Green Dot
   - Orange Dot
+  - Pink Dot
+  - Purple Dot
+  - Teal Dot
+  - Yellow Dot
   layers:
   - Default
   - TransparentFX
@@ -21,7 +21,7 @@ TagManager:
   - UI
   - 
   - 
-  - ice
+  - 
   - 
   - 
   - 
@@ -48,10 +48,4 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
-    locked: 0
-  - name: ice
-    uniqueID: 4053629747
-    locked: 0
-  - name: Player
-    uniqueID: 1281209823
     locked: 0
