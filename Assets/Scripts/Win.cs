@@ -1,15 +1,12 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.UI;
+﻿using UnityEngine;
 
 public class Win : MonoBehaviour
 {
-    public Text Winner;
+    public TextMesh Winner;
     // Start is called before the first frame update
     void Start()
     {
-        
+        Winner.text = "Key: " + GM.Key;
     }
 
     // Update is called once per frame

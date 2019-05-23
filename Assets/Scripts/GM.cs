@@ -6,11 +6,12 @@ using UnityEngine;
 public class GM : MonoBehaviour
 {
     public static bool Win = false;
-    public static int indexer;
+    public static int Position;
+    public static string Key;
     // Start is called before the first frame update
     void Start()
     {
-         indexer = Random.Range(0, 2);
+        Position = 0;
     }
 
     // Update is called once per frame

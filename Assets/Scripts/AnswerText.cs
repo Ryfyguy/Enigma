@@ -1,11 +1,8 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.UI;
+﻿using UnityEngine;
 
 public class AnswerText : MonoBehaviour
 {
-    public Text Answer;
+    public TextMesh Answer;
 
     void Start()
     {
@@ -14,7 +11,7 @@ public class AnswerText : MonoBehaviour
 
     void Update()
     {
-      if (Answer.text.ToLower() == InitalText.Puzzles[GM.indexer].ToString())
+      if (Answer.text.ToLower() == InitalText.Puzzles[0].ToString())
         {
             GM.Win = true;
         }
