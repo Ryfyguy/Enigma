@@ -2,18 +2,28 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum GameState
+{
+    wait,
+    move
+}
 public class Board : MonoBehaviour
 {
+    private FindMatches findMatches;
+    public GameState currentState = GameState.move;
 
     public int width; //how wide
     public int height; // how tall
+    public int offSet;
     //2d array can hold two different value sort of like x and y
     public GameObject tilePrefab;
     public GameObject[] dots;
+    public GameObject destroyEffect;
     private BackgroundTile[,] allTiles;
     public GameObject[,] allDots;
     // Start is called before the first frame update
     void Start(){
+        findMatches = FindObjectOfType<FindMatches>();
         allTiles = new BackgroundTile[width, height];
         allDots = new GameObject[width, height];
         SetUp();
@@ -24,7 +34,7 @@ public class Board : MonoBehaviour
         {
             for(int z = 0; z<height; z++) // allows for the setup of the board. The dots object are placed over the actual board, making them the same. 
             {
-                Vector2 tempPosition = new Vector2(i, z);
+                Vector2 tempPosition = new Vector2(i, z + offSet);
                 GameObject backgroundTile = Instantiate(tilePrefab, tempPosition, Quaternion.identity) as GameObject;
                 backgroundTile.transform.parent = this.transform;
                 backgroundTile.name = "( " + i + ", " + z + " )";
@@ -35,8 +45,10 @@ public class Board : MonoBehaviour
                     dotToUse = Random.Range(0, dots.Length);
                     maxIterations++;
                 }
-                maxIterations = 0;
+                maxIterations = 0; //dots generated over time.
                 GameObject dot = Instantiate(dots[dotToUse], tempPosition, Quaternion.identity);
+                dot.GetComponent<Pieces>().row = z;
+                dot.GetComponent<Pieces>().column = i;
                 dot.transform.parent = this.transform;
                 dot.name = "( " + i + ", " + z + " )";
                 allDots[i, z] = dot;
@@ -85,6 +97,9 @@ public class Board : MonoBehaviour
     {
         if (allDots[column, row].GetComponent<Pieces>().isMatched)
         {
+            findMatches.currentMatches.Remove(allDots[column, row]);
+            GameObject particle = Instantiate(destroyEffect, allDots[column, row].transform.position, Quaternion.identity);
+            Destroy(particle, .5f);
             Destroy(allDots[column, row]);
             allDots[column, row] = null; // this will destroy the piece if it already has been matched
 
@@ -136,10 +151,12 @@ public class Board : MonoBehaviour
             {
                 if (allDots[i, j] == null)
                 {
-                    Vector2 tempPosition = new Vector2(i, j);
+                    Vector2 tempPosition = new Vector2(i, j + offSet);
                     int dotToUse = Random.Range(0, dots.Length);
                     GameObject piece = Instantiate(dots[dotToUse], tempPosition, Quaternion.identity);
                     allDots[i, j] = piece;
+                    piece.GetComponent<Pieces>().row = j;
+                    piece.GetComponent<Pieces>().column = i;
                 }
             }
         }
@@ -163,16 +180,18 @@ public class Board : MonoBehaviour
         return false;
     }
 
-    private IEnumerator FillBoardCo()
+    private IEnumerator FillBoardCo()//refill board
     {
         RefillBoard();
-        yield return new WaitForSeconds(.2f);
+        yield return new WaitForSeconds(.2f); // wait some time to see if there are any mathches and drstroy them
 
         while (MatchesOnBoard())
         {
             yield return new WaitForSeconds(.2f);
             DestroyMatches();
         }
+        yield return new WaitForSeconds(.2f);
+        currentState = GameState.move;
     }
     
 }

@@ -94,8 +94,8 @@ LightmapSettings:
     m_PVRFilteringAtrousPositionSigmaDirect: 0.5
     m_PVRFilteringAtrousPositionSigmaIndirect: 2
     m_PVRFilteringAtrousPositionSigmaAO: 1
-    m_ShowResolutionOverlay: 1
     m_ExportTrainingData: 0
+    m_TrainingDataDestination: TrainingData
   m_LightingDataAsset: {fileID: 0}
   m_UseShadowmask: 1
 --- !u!196 &4
@@ -195,12 +195,17 @@ PrefabInstance:
     - target: {fileID: -6802612879753744398, guid: 4f6675878f22114488ff3ee71f7832e3,
         type: 3}
       propertyPath: width
-      value: 7
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: -6802612879753744398, guid: 4f6675878f22114488ff3ee71f7832e3,
         type: 3}
       propertyPath: height
-      value: 10
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: -6802612879753744398, guid: 4f6675878f22114488ff3ee71f7832e3,
+        type: 3}
+      propertyPath: offSet
+      value: 20
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4f6675878f22114488ff3ee71f7832e3, type: 3}
@@ -318,8 +323,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e708efb5f36f584583d60e8c3029516, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  width: 7
-  height: 10
+  currentState: 1
+  width: 8
+  height: 8
+  offSet: 20
   tilePrefab: {fileID: 1479291662902967212, guid: 4314afdfca068f84baa63634c13794a2,
     type: 3}
   dots:
@@ -331,6 +338,8 @@ MonoBehaviour:
   - {fileID: 3899634675682402089, guid: edc83dd1812f3774880fdd9877c46f43, type: 3}
   - {fileID: 5909918840707086414, guid: d71d67f2b34a5834184b9b583a062eef, type: 3}
   - {fileID: 2967386724898700208, guid: 607bbac19e7793f46b38f2c5afc34c47, type: 3}
+  destroyEffect: {fileID: 828041512813238963, guid: 48a03b6f64506fc4d8b3118546cc8591,
+    type: 3}
 --- !u!4 &1183160951
 Transform:
   m_ObjectHideFlags: 0
@@ -346,3 +355,47 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &2065092421
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2065092422}
+  - component: {fileID: 2065092423}
+  m_Layer: 0
+  m_Name: Match FInder
+  m_TagString: Untagged
+  m_Icon: {fileID: -964228994112308473, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2065092422
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2065092421}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2065092423
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2065092421}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c42c3ea05aa900f439ca9fe8544943fd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentMatches: []
