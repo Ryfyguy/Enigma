@@ -22,6 +22,8 @@ public class Click : MonoBehaviour
     public TextMesh threeFour;
     public TextMesh fourFour;
 
+    private string TestAnswer;
+
 
     // Start is called before the first frame update
     void Start()
@@ -40,91 +42,151 @@ public class Click : MonoBehaviour
         if (!Input.GetKeyUp(KeyCode.LeftShift))
         {
             Alphabet();
+            TestAnswer = "";
+            TestAnswer += zero.text;
+            TestAnswer += one.text;
+            TestAnswer += two.text;
+            TestAnswer += three.text;
+            TestAnswer += " ";
+            TestAnswer += threeTwo.text;
+            TestAnswer += four.text;
+            TestAnswer += five.text;
+            TestAnswer += zeroTwo.text;
+            TestAnswer += fourTwo.text;
+            TestAnswer += fiveTwo.text;
+            TestAnswer += six.text;
+            TestAnswer += fourThree.text;
+            TestAnswer += " ";
+            TestAnswer += twoTwo.text;
+            TestAnswer += threeThree.text;
+            TestAnswer += " ";
+            TestAnswer += seven.text;
+            TestAnswer += eight.text;
+            TestAnswer += nine.text;
+            TestAnswer += threeFour.text;
+            TestAnswer += fourFour.text;
+            GM.AnswerCheck = TestAnswer;
+           
+
         }
-        if (Input.GetKeyUp(KeyCode.LeftShift) || Input.GetKeyUp(KeyCode.Space) || Input.GetKeyUp(KeyCode.Tab))
+        if (Input.GetKeyUp(KeyCode.RightArrow))
         {
-            if (GM.Position == 0)
+            
+            if (GM.Position == 9)
             {
-                one.color = Color.yellow;
-                zero.color = Color.black;
-                zeroTwo.color = Color.black;
-                GM.Position = GM.Position + 1;
-            }
-            else if (GM.Position == 1)
-            {
-                one.color = Color.black;
-                two.color = Color.yellow;
-                twoTwo.color = Color.yellow;
-                GM.Position += 1;
-            }
-            else if (GM.Position == 2)
-            {
-                two.color = Color.black;
-                twoTwo.color = Color.black;
-                three.color = Color.yellow;
-                threeTwo.color = Color.yellow;
-                threeThree.color = Color.yellow;
-                threeFour.color = Color.yellow;
-                GM.Position += 1;
-            }
-            else if (GM.Position == 3)
-            {
-                three.color = Color.black;
-                threeTwo.color = Color.black;
-                threeThree.color = Color.black;
-                threeFour.color = Color.black;
-                four.color = Color.yellow;
-                fourTwo.color = Color.yellow;
-                fourThree.color = Color.yellow;
-                fourFour.color = Color.yellow;
-                GM.Position += 1;
-            }
-            else if (GM.Position == 4)
-            {
-                four.color = Color.black;
-                fourTwo.color = Color.black;
-                fourThree.color = Color.black;
-                fourFour.color = Color.black;
-                five.color = Color.yellow;
-                fiveTwo.color = Color.yellow;
-                GM.Position += 1;
-            }
-            else if (GM.Position == 5)
-            {
-                five.color = Color.black;
-                fiveTwo.color = Color.black;
-                six.color = Color.yellow;
-                GM.Position += 1;
-            }
-            else if (GM.Position == 6)
-            {
-                six.color = Color.black;
-                seven.color = Color.yellow;
-                GM.Position += 1;
-            }
-            else if (GM.Position == 7)
-            {
-                seven.color = Color.black;
-                eight.color = Color.yellow;
-                GM.Position += 1;
-            }
-            else if (GM.Position == 8)
-            {
-                eight.color = Color.black;
-                nine.color = Color.yellow;
-                GM.Position += 1;
+                GM.Position = 0;
             }
             else
             {
-                nine.color = Color.black;
-                zero.color = Color.yellow;
-                zeroTwo.color = Color.yellow;
-                GM.Position = 0;
+                GM.Position += 1;
             }
+            changeCurrent();
+        }
+        else if (Input.GetKeyUp(KeyCode.LeftArrow))
+        {
             
+            if (GM.Position == 0){
+                GM.Position = 9;
+            }
+            else
+            {
+                GM.Position -= 1;
+            }
+            changeCurrent();
         }
 
 
+    }
+    void changeCurrent()
+    {
+        if (GM.Position == 1)
+        {
+            one.color = Color.yellow;
+            zero.color = Color.black;
+            zeroTwo.color = Color.black;
+            two.color = Color.black;
+            twoTwo.color = Color.black;
+        }
+        else if (GM.Position == 2)
+        {
+            one.color = Color.black;
+            two.color = Color.yellow;
+            twoTwo.color = Color.yellow;
+            three.color = Color.black;
+            threeTwo.color = Color.black;
+            threeThree.color = Color.black;
+            threeFour.color = Color.black;
+
+        }
+        else if (GM.Position == 3)
+        {
+            two.color = Color.black;
+            twoTwo.color = Color.black;
+            three.color = Color.yellow;
+            threeTwo.color = Color.yellow;
+            threeThree.color = Color.yellow;
+            threeFour.color = Color.yellow;
+            four.color = Color.black;
+            fourTwo.color = Color.black;
+            fourThree.color = Color.black;
+            fourFour.color = Color.black;
+        }
+        else if (GM.Position == 4)
+        {
+            three.color = Color.black;
+            threeTwo.color = Color.black;
+            threeThree.color = Color.black;
+            threeFour.color = Color.black;
+            four.color = Color.yellow;
+            fourTwo.color = Color.yellow;
+            fourThree.color = Color.yellow;
+            fourFour.color = Color.yellow;
+            five.color = Color.black;
+            fiveTwo.color = Color.black;
+        }
+        else if (GM.Position == 5)
+        {
+            four.color = Color.black;
+            fourTwo.color = Color.black;
+            fourThree.color = Color.black;
+            fourFour.color = Color.black;
+            five.color = Color.yellow;
+            fiveTwo.color = Color.yellow;
+            six.color = Color.black;
+        }
+        else if (GM.Position == 6)
+        {
+            five.color = Color.black;
+            fiveTwo.color = Color.black;
+            six.color = Color.yellow;
+            seven.color = Color.black;
+        }
+        else if (GM.Position == 7)
+        {
+            six.color = Color.black;
+            seven.color = Color.yellow;
+            eight.color = Color.black;
+        }
+        else if (GM.Position == 8)
+        {
+            seven.color = Color.black;
+            eight.color = Color.yellow;
+            nine.color = Color.black;
+        }
+        else if (GM.Position == 9)
+        {
+            eight.color = Color.black;
+            nine.color = Color.yellow;
+            zero.color = Color.black;
+            zeroTwo.color = Color.black;
+        }
+        else
+        {
+            nine.color = Color.black;
+            zero.color = Color.yellow;
+            zeroTwo.color = Color.yellow;
+            one.color = Color.black;
+        }
     }
     void Alphabet()
     {

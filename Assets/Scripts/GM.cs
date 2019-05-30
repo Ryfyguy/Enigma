@@ -8,6 +8,7 @@ public class GM : MonoBehaviour
     public static bool Win = false;
     public static int Position;
     public static string Key;
+    public static string AnswerCheck;
     // Start is called before the first frame update
     void Start()
     {

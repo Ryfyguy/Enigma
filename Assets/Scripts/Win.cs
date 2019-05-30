@@ -12,6 +12,10 @@ public class Win : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (GM.AnswerCheck == "this sentence is false")
+        {
+            GM.Win = true;
+        }
         if (GM.Win){
             Winner.text = "Correct!";
         }
