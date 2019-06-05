@@ -1,0 +1,5 @@
+Ryan Fahnestock, Afridi Karim, Daniel Campbell, Jackie Yang
+rsf54, akk63, jy532, dtc53
+Graduation Spring of 2023
+
+Enigma is a basic collection of 5 puzzle games to challenge the player.
