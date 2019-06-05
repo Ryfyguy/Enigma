@@ -5,16 +5,16 @@ using UnityEngine.SceneManagement;
 
 public class SceneTP : MonoBehaviour
 {
-    public int index;
+    //public int index;
     public string levelName;
     // Start is called before the first frame update
     void OnTriggerEnter2D(Collider2D other)
     {
-        SceneManager.LoadScene(index);
+        //SceneManager.LoadScene(index);
         //Loading Level with build index
 
+        SceneManager.LoadScene(levelName);
         //loading level with scene name
-        //SceneManager.LoadScene("Maze");
     }
     void Start()
     {

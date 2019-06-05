@@ -2,7 +2,6 @@
 
 public class Click : MonoBehaviour
 {
-    //This whole file basically changes text based off of key press or changes the current selection by manipulating an int and the text colour
     public TextMesh zero;
     public TextMesh one;
     public TextMesh two;

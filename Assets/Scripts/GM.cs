@@ -5,7 +5,6 @@ using UnityEngine;
 
 public class GM : MonoBehaviour
 {
-    //initializes public variables and the position to 0
     public static bool Win = false;
     public static int Position;
     public static string Key;
