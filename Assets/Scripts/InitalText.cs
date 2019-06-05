@@ -6,6 +6,7 @@ public class InitalText : MonoBehaviour
 
     private static string NewWord2;
     public static string word;
+    //we initialize a generic alphabet for reference, and a seperate alphabet to be manipulated
     public static List<string> Alpha = new List<string>
     {
         "a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z","a"
@@ -19,6 +20,7 @@ public class InitalText : MonoBehaviour
 
     void Start()
     {
+        //creates a randomized alphabet to cipher from for the puzzle
         for (int i = 0; i < 26; i++)
         {
             int temp = Random.Range(0, 26 - i);

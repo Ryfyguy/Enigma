@@ -2,6 +2,7 @@
 
 public class Win : MonoBehaviour
 {
+    //Checks to see if the player input matches the final text, then displays "Correct" if it does
     public TextMesh Winner;
     // Start is called before the first frame update
     void Start()
