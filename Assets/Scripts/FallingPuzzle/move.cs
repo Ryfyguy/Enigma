@@ -5,7 +5,6 @@ using UnityEngine;
 public class move : MonoBehaviour
 {
     public float Speed;
-    public float Timer;
 
     // Start is called before the first frame update
     void Start()
@@ -27,8 +26,6 @@ public class move : MonoBehaviour
         var playerObject = GameObject.Find("Player");
         var playerPos = playerObject.transform.position;
 
-        Timer -= Time.deltaTime;
-
         if (Input.GetButton("Horizontal"))
         {
             float WalkTranslation = Input.GetAxis("Horizontal") * Time.deltaTime * Speed;
@@ -37,13 +34,8 @@ public class move : MonoBehaviour
 
         if (playerPos[1] <= -24)
         {
-            playerPos[1] = 24;
+            playerPos[1] = 23;
             playerObject.transform.position = playerPos;
-        }
-
-        if (Timer < 0)
-        {
-            Time.timeScale = 0;
         }
     }
 }
