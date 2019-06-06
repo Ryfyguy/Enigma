@@ -764,7 +764,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Circle Match
+  m_Text: Fruit Match
 --- !u!222 &722017622
 CanvasRenderer:
   m_ObjectHideFlags: 0
