@@ -38,12 +38,13 @@ public class Pieces : MonoBehaviour
     void Update() //checks for match, and if they are matched then they change the color to a darker color. 
     {
         //FindMatches();
-        if (isMatched)
+        /*if (isMatched)
         {
             SpriteRenderer mySprite = GetComponent<SpriteRenderer>();
             mySprite.color = new Color(1f, 1f, 1f, .2f);
 
         }
+        */
         targetX = column;
         targetY = row;
         if(Mathf.Abs(targetX - transform.position.x) > .1)
@@ -95,7 +96,7 @@ public class Pieces : MonoBehaviour
                 otherDot.GetComponent<Pieces>().column = column;
                 row = previousRow;
                 column = previousColumn;
-                yield return new WaitForSeconds(.2f);
+                yield return new WaitForSeconds(.5f);
                 board.currentState = GameState.move;
 
             }
@@ -104,7 +105,7 @@ public class Pieces : MonoBehaviour
                 board.DestroyMatches();
                 
             }
-            otherDot = null;
+            
         }
     }
 
@@ -130,10 +131,12 @@ public class Pieces : MonoBehaviour
     {
         if (Mathf.Abs(finalTouchPosition.y - firstTouchPosition.y) > swipeResist || Mathf.Abs(finalTouchPosition.x - firstTouchPosition.x) > swipeResist)
         {
+            board.currentState = GameState.wait;
+
             swipeAngle = Mathf.Atan2(finalTouchPosition.y - firstTouchPosition.y, finalTouchPosition.x - firstTouchPosition.x) * 180 / Mathf.PI; //changes the radian found to angles, and we are basically doing pythagorean theorm here. 
                                                                                                                                                  //Debug.Log(swipeAngle);
             MovePieces();
-            board.currentState = GameState.wait;
+            
         }
         else
         {
@@ -151,6 +154,8 @@ public class Pieces : MonoBehaviour
             previousColumn = column;
             otherDot.GetComponent<Pieces>().column -= 1;//changes the position of that selected dot
             column += 1;// changes our chosen dot to that new column position
+            StartCoroutine(CheckMoveCo());
+
         }
         else if (swipeAngle > 45 && swipeAngle <= 135 && row<board.height-1) //depending on what angle the user swipes. 
         {
@@ -160,6 +165,8 @@ public class Pieces : MonoBehaviour
             previousColumn = column;
             otherDot.GetComponent<Pieces>().row -= 1;
             row += 1;
+            StartCoroutine(CheckMoveCo());
+
         }
         else if ((swipeAngle > 135 || swipeAngle <= -135) && column>0)
         {
@@ -169,6 +176,8 @@ public class Pieces : MonoBehaviour
             previousColumn = column;
             otherDot.GetComponent<Pieces>().column += 1;
             column -= 1;
+            StartCoroutine(CheckMoveCo());
+
         }
         else if (swipeAngle < -45 && swipeAngle >= -135 && row>0)
         {
@@ -177,9 +186,11 @@ public class Pieces : MonoBehaviour
             previousRow = row;
             previousColumn = column;
             otherDot.GetComponent<Pieces>().row += 1;
-            row -= 1; 
+            row -= 1;
+            StartCoroutine(CheckMoveCo());
+
         }
-        StartCoroutine(CheckMoveCo());
+        board.currentState = GameState.move;
     }
 
     void FindMatches() // initially the isMatched is false, as in no match. 
