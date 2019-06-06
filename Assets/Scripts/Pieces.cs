@@ -111,7 +111,7 @@ public class Pieces : MonoBehaviour
 
     private void OnMouseDown()
     {//gets the position of the mouse click when uer first clicks it.
-        if(board.currentState == GameState.move)
+        //if(board.currentState == GameState.move)
         {
             firstTouchPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition); //gets position of the first click
         }
@@ -120,7 +120,7 @@ public class Pieces : MonoBehaviour
 
     private void OnMouseUp()
     {// gets the position when the user lets go of the mouse click. 
-        if(board.currentState == GameState.move)
+        //if(board.currentState == GameState.move)
         {
             finalTouchPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);  //camrea.main gets the position of the world coordinate not the entire monitor screen coordinate. 
             CalculateAngle();
