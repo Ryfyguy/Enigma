@@ -25,7 +25,7 @@ EditorBuildSettings:
     guid: ba12ea1a60822f14ebadae34f3651928
   - enabled: 1
     path: Assets/Scenes/SampleScene.unity
-    guid: 1e361bfe453406b47a119d42ee04d05e
+    guid: c58865ac91116c04bb50d3445b55ab85
   - enabled: 1
     path: Assets/Scenes/Mazecontrol.unity
     guid: 8525c682556625e499fad9b91ccfc660
@@ -38,6 +38,12 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/cryptogramcontrol.unity
     guid: 4cad083f7988556489f18ec7341fd73f
+  - enabled: 0
+    path: Assets/Scenes/logo.unity
+    guid: cb3eca75d57a7664b993585fb0494295
+  - enabled: 0
+    path: Assets/Scenes/Control.unity
+    guid: 2cd30a93f1d375a43b497d835b4695ce
   - enabled: 1
     path: Assets/Scenes/Freefallcontrol.unity
     guid: b0c576d214a301f41a9ae5ccc9ba63c3
